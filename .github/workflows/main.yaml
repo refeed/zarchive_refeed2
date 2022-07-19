@@ -1,6 +1,6 @@
-on:
-  schedule:
-   - cron: '* 24 * * *'
+on: [push]
+  # schedule:
+  #  - cron: '* 24 * * *'
 
 jobs:
   publish_archive_job:
@@ -11,7 +11,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Run archive
       id: archive
-      uses: zulip/zulip-archive@master
+      uses: refeed/zulip-archive@sitemap_generator
       with:
         zulip_organization_url: ${{ secrets.zulip_organization_url }}
         zulip_bot_email: ${{ secrets.zulip_bot_email }}
